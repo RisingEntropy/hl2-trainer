@@ -1,0 +1,106 @@
+import { Button, VerticalBox,HorizontalBox,CheckBox } from "std-widgets.slint";
+export component AppWindow inherits Window {
+    callback open_url();
+    callback enable_inf_health();
+    callback enable_inf_energy();
+    callback enable_inf_shield();
+    callback enable_inf_ammo();
+    callback enable_no_change_clip();
+
+    callback disable_inf_health();
+    callback disable_inf_energy();
+    callback disable_inf_shield();
+    callback disable_inf_ammo();
+    callback disable_no_change_clip();
+
+    width: 500px;
+    height: 200px;
+
+    VerticalBox{
+        Text{
+            text: "Half Life 2 Trainer";
+            font-size: 20px;
+            horizontal-alignment: TextHorizontalAlignment.center;
+
+        }
+        HorizontalBox {
+            Image {
+                height: 100px;
+                width: 100px;
+                visible: true;
+                source: @image-url("assets/logo.png");
+                horizontal-alignment: ImageHorizontalAlignment.left;
+                vertical-alignment: ImageVerticalAlignment.center;
+                vertical-tiling: ImageTiling.none;
+            }
+            VerticalBox {
+
+                health:=CheckBox {
+                    text: "Infinite Health";
+                    toggled => {
+                        if(health.checked){
+                            enable_inf_health();
+                        }else{
+                            disable_inf_health();
+                        }
+                    }
+                }
+                energy:=CheckBox{
+                    text: "Infinite Energy";
+                    toggled => {
+                        if(energy.checked){
+                            enable_inf_energy();
+                        }else{
+                            disable_inf_energy();
+                        }
+
+                    }
+                }
+                shield:=CheckBox{
+                    text: "Infinite Shield";
+                    toggled => {
+                        if(shield.checked){
+                            enable_inf_shield();
+                        }else{
+                            disable_inf_shield();
+                        }
+                    }
+                }
+
+            }
+            VerticalBox {
+                ammo:=CheckBox{
+                    text: "Infinite ammo";
+                    toggled => {
+                        if(ammo.checked){
+                            enable_inf_ammo();
+                        }else{
+                            disable_inf_ammo();
+                        }
+                    }
+                }
+                no_change_clip:=CheckBox{
+                    text: "No Reload";
+                    toggled => {
+                        if(no-change-clip.checked){
+                            enable_no_change_clip();
+                        }else{
+                            disable_no_change_clip();
+                        }
+                    }
+                }
+                Button {
+
+                    checkable: false;
+                    checked: false;
+                    colorize-icon: false;
+                    text:"Visit my site";
+
+                    clicked => {
+                        open_url();
+                    }
+                }
+            }
+        }
+    }
+}
